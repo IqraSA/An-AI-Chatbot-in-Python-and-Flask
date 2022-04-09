@@ -17,15 +17,15 @@ intents = json.loads(open("intents.json").read())
 words = pickle.load(open("words.pkl", "rb"))
 classes = pickle.load(open("classes.pkl", "rb"))
 
-app = Flask(__name__)
-# run_with_ngrok(app) 
+application = Flask(__name__)
+# run_with_ngrok(application) 
 
-@app.route("/")
+@application.route("/")
 def home():
     return render_template("index.html")
 
 
-@app.route("/get", methods=["POST"])
+@application.route("/get", methods=["POST"])
 def chatbot_response():
     msg = request.form["msg"]
     if msg.startswith('my name is'):
@@ -92,5 +92,5 @@ def getResponse(ints, intents_json):
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
 
